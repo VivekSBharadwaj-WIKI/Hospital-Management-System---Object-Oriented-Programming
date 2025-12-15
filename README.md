@@ -597,17 +597,9 @@ Contributions are welcome! Here's how you can help:
 - [ ] Electronic Health Records (EHR) compliance
 - [ ] Automated report generation
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👨‍💻 Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
-
+**Vivek S Bharadwaj**
 ## 🙏 Acknowledgments
 
 - Inspired by real-world hospital management systems
@@ -617,7 +609,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email your.email@example.com or open an issue on GitHub.
+For support, email vivekbharadwajone8@gmail.com or open an issue on GitHub.
 
 ---
 
