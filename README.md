@@ -5,7 +5,6 @@ A comprehensive, production-ready Hospital Management System built with Java dem
 ![Java](https://img.shields.io/badge/Java-17+-orange.svg)
 ![OOP](https://img.shields.io/badge/OOP-Concepts-blue.svg)
 ![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-1800+-green.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## 📋 Table of Contents
 
