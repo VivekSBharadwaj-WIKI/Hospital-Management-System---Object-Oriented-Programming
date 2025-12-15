@@ -1,52 +1,64 @@
-# 🏥 Hospital Management System – Java (OOP Intensive Project)
+# 🏥 Hospital Management System
 
-A **comprehensive Hospital Management System** implemented in **Java**, designed to demonstrate **all core and advanced Object-Oriented Programming (OOP) concepts** in a single, real-world application.
+A comprehensive, production-ready Hospital Management System built with Java demonstrating advanced Object-Oriented Programming (OOP) concepts. This system manages all aspects of hospital operations including patient care, staff management, billing, pharmacy, laboratory services, and emergency department operations.
 
-This project goes beyond toy examples — it models an actual hospital ecosystem including **patients, doctors, billing, insurance, pharmacy, laboratory, emergency services, and reporting**.
+![Java](https://img.shields.io/badge/Java-17+-orange.svg)
+![OOP](https://img.shields.io/badge/OOP-Concepts-blue.svg)
+![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-1800+-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
----
+## 📋 Table of Contents
 
-## 🚀 Project Highlights
+- [Features](#features)
+- [OOP Concepts Demonstrated](#oop-concepts-demonstrated)
+- [System Architecture](#system-architecture)
+- [Class Hierarchy](#class-hierarchy)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Code Structure](#code-structure)
+- [Key Components](#key-components)
+- [Design Patterns](#design-patterns)
+- [Contributing](#contributing)
+- [License](#license)
 
-- **1800+ lines of well-structured Java code**
-- **25+ interrelated classes**
-- Covers **ALL OOP principles** with real use cases
-- Uses **modern Java features** (Collections, Streams, Lambdas)
-- Suitable for:
-  - OOP / Java academic projects
-  - Resume & portfolio projects
-  - Interview demonstrations
-  - GitHub showcase
+## ✨ Features
 
----
+### Core Functionality
+- **Patient Management**: Complete patient registration, medical history tracking, and health records
+- **Staff Management**: Doctor, nurse, and administrator management with role-based access
+- **Appointment System**: Schedule, reschedule, and cancel appointments with real-time availability
+- **Billing & Insurance**: Comprehensive billing system with insurance claim processing
+- **Pharmacy Management**: Inventory tracking, prescription dispensing, and stock alerts
+- **Laboratory Services**: Test ordering, result management, and reporting
+- **Emergency Department**: Patient triage system with priority-based queue management
+- **Room Management**: Track room occupancy, maintenance, and patient admissions
+- **Financial Reporting**: Revenue tracking, payment processing, and financial analytics
 
-## 🧠 OOP Concepts Demonstrated
+### Advanced Features
+- Password authentication with SHA-256 hashing
+- Multi-level staff hierarchy with different access levels
+- Prescription management with refill tracking
+- Vital signs monitoring and medication logs
+- Performance review system for staff
+- Low stock alerts for pharmacy inventory
+- Comprehensive report generation
+- Insurance policy management and claims processing
 
-✔ **Encapsulation** – Private fields with controlled access  
-✔ **Inheritance** – Multi-level hierarchy (Person → MedicalStaff → Doctor/Nurse/Admin)  
-✔ **Polymorphism** – Runtime polymorphism & method overriding  
-✔ **Abstraction** – Abstract classes & interfaces  
-✔ **Interfaces** – Multiple interface implementation  
-✔ **Composition** – Hospital contains Departments, Rooms, Staff  
-✔ **Aggregation** – Doctor has Patients (loose coupling)  
-✔ **Association** – Appointment links Patient & Doctor  
-✔ **Exception Handling** – Custom exceptions with proper error handling  
-✔ **Static Members** – Class-level ID generation & counters  
-✔ **Enums** – Type-safe constants (BloodGroup, RoomType, etc.)  
-✔ **Java Collections** – HashMap, ArrayList, List, Map  
-✔ **Streams API** – filter(), map(), collect()  
-✔ **Lambda Expressions** – Functional programming features  
+## 🎯 OOP Concepts Demonstrated
 
----
+### 1. **Encapsulation**
+```java
+private String passwordHash;
+protected String employeeId;
 
-## 🧱 Class Structure Overview
+public boolean authenticate(String password) {
+    return passwordHash.equals(hashPassword(password));
+}
+```
+- Private fields with controlled access through getters/setters
+- Data hiding and information security
 
-### Core Abstract Classes
-- `Person` (Abstract Base Class)
-- `MedicalStaff` (Abstract)
-
-### Inheritance Hierarchy
-
+### 2. **Inheritance**
 ```
 Person (Abstract)
 ├── MedicalStaff (Abstract)
@@ -55,568 +67,563 @@ Person (Abstract)
 │   └── Administrator
 └── Patient
 ```
+- Multi-level inheritance hierarchy
+- Code reusability and logical organization
+- `extends` keyword for class inheritance
 
-### Key Domain Classes
+### 3. **Polymorphism**
+```java
+Person person1 = new Doctor(...);
+Person person2 = new Patient(...);
+System.out.println(person1.getType()); // "Doctor"
+System.out.println(person2.getType()); // "Patient"
+```
+- Method overriding
+- Runtime polymorphism
+- Dynamic method dispatch
 
-**Medical Services:**
-- `MedicalRecord` – Patient diagnosis and treatment history
-- `Prescription` – Medication prescriptions with refill tracking
-- `Appointment` – Patient-doctor appointment scheduling
-- `Admission` – Hospital admission and discharge management
-- `LabTest` – Laboratory test orders and results
+### 4. **Abstraction**
+```java
+abstract class Person implements Identifiable {
+    public abstract String getType();
+}
+```
+- Abstract classes and methods
+- Interface-based abstraction
+- Hiding implementation details
 
-**Facilities:**
-- `Room` – Hospital rooms with occupancy tracking
-- `Laboratory` – Lab facilities and test management
-- `Pharmacy` – Medication inventory and dispensing
-- `EmergencyDepartment` – Emergency triage and patient queue
+### 5. **Interfaces**
+```java
+interface Billable {
+    double calculateCharges();
+    Map<String, Object> generateInvoice();
+}
+```
+- Multiple interface implementation
+- `Identifiable`, `Authenticatable`, `Billable`, `Schedulable`, `Reportable`
+- Contract-based programming
 
-**Financial:**
-- `Bill` – Patient billing with itemized charges
-- `InsuranceProvider` – Insurance company management
-- `InsurancePolicy` – Policy coverage and claims processing
+### 6. **Composition**
+```java
+class Hospital {
+    private Map<String, Doctor> doctors;
+    private Map<String, Room> rooms;
+    private EmergencyDepartment emergencyDept;
+}
+```
+- "Has-a" relationship
+- Strong ownership between objects
+- Lifecycle management
 
-**Core Management:**
-- `Hospital` – Main hospital entity with all departments
-- `HospitalManagementSystem` – System-wide management and coordination
+### 7. **Aggregation**
+```java
+class Doctor {
+    private List<Patient> patients; // Doctor has patients
+}
+```
+- Loose coupling between objects
+- Independent lifecycle of aggregated objects
 
-**Supporting Classes:**
-- `Inventory` – Stock management for pharmacy
-- `Address` – Physical address information
-- `ContactInfo` – Contact details with validation
+### 8. **Association**
+```java
+class Appointment {
+    private Patient patient;
+    private Doctor doctor;
+}
+```
+- Objects work together but remain independent
+- Bi-directional relationships
 
----
+### 9. **Exception Handling**
+```java
+try {
+    hospital.admitPatient(patient, doctor, RoomType.ICU, "Emergency");
+} catch (InsufficientResourceException e) {
+    System.err.println("No ICU beds available: " + e.getMessage());
+}
+```
+- Custom exception classes
+- Try-catch-finally blocks
+- Proper error propagation
 
-## 🔌 Interfaces Used
+### 10. **Static Members & Methods**
+```java
+private static int patientCounter = 5000;
 
-- **`Identifiable`** – Provides unique ID and type identification
-- **`Authenticatable`** – Password authentication and management
-- **`Billable`** – Billing and invoice generation
-- **`Schedulable`** – Appointment scheduling capabilities
-- **`Reportable`** – Report generation functionality
+private static synchronized String generatePatientId() {
+    return "PAT" + (++patientCounter);
+}
+```
+- Class-level variables
+- Synchronized ID generation
+- Shared state across instances
 
-These ensure **loose coupling**, **flexibility**, and **clean design**.
+### 11. **Enumerations**
+```java
+enum BloodGroup {
+    A_POSITIVE("A+"), O_NEGATIVE("O-");
+    private final String value;
+}
+```
+- Type-safe constants
+- Enhanced readability
+- Built-in methods
 
----
+### 12. **Collections Framework**
+```java
+Map<String, Doctor> doctors = new HashMap<>();
+List<Appointment> appointments = new ArrayList<>();
+```
+- HashMap for key-value storage
+- ArrayList for ordered collections
+- Stream API for data processing
 
-## 🔗 Object Relationships
-
-| Concept        | Example | Explanation |
-|----------------|---------|-------------|
-| **Composition** | Hospital → Departments, Rooms, Staff | Strong ownership, lifecycle dependency |
-| **Aggregation** | Doctor → Patients | Loose coupling, independent lifecycle |
-| **Association** | Appointment → Patient & Doctor | Objects work together but remain independent |
-
----
-
-## ⚙️ Functional Modules
-
-### 1. Patient Management
-- Patient registration with complete profile
-- Medical history tracking
-- Vital signs monitoring
-- Allergy and chronic condition management
-- Medication logs
-
-### 2. Doctor & Staff Management
-- Doctor registration with specializations
-- Nurse assignment and task management
-- Administrator access control
-- Staff authentication (SHA-256 hashing)
-- Shift scheduling
-- Performance reviews
-
-### 3. Appointment System
-- Real-time slot availability
-- Appointment scheduling and rescheduling
-- Status tracking (Scheduled, Completed, Cancelled, No Show)
-- Consultation notes
-
-### 4. Admission & Room Allocation
-- Room type management (General, Private, ICU, Emergency, Operation)
-- Patient admission and discharge
-- Occupancy tracking
-- Room maintenance scheduling
-- Duration-based billing
-
-### 5. Pharmacy & Inventory
-- Medication stock management
-- Prescription dispensing with validation
-- Low stock alerts
-- Sales tracking and reporting
-- Automatic reorder level monitoring
-
-### 6. Laboratory Services
-- Test catalog management
-- Test ordering by doctors
-- Result recording by technicians
-- Comprehensive lab reports
-- Test cost tracking
-
-### 7. Emergency Department
-- Patient triage (Priority levels 1-5)
-- Queue management
-- Bed availability tracking
-- Critical case identification
-- Staff assignment
-
-### 8. Billing & Payments
-- Itemized billing (consultations, rooms, tests, medications)
-- Tax calculation (5%)
-- Discount application
-- Multiple payment methods (Cash, Card, Insurance, UPI)
-- Payment tracking
-
-### 9. Insurance Management
-- Policy creation and management
-- Coverage amount tracking
-- Claim processing (80% coverage)
-- Claims history
-- Policy renewal
-
-### 10. System Reporting
-- Hospital statistics
-- Financial reports (revenue, collections)
-- Occupancy rates
-- Staff performance metrics
-- Patient summaries
-
----
-
-## 🧪 Java Features Used
-
-### Collections Framework
-- `ArrayList` – Dynamic patient lists, appointment tracking
-- `HashMap` – Staff lookup by ID, room management
-- `List` – Ordered collections for medical records
-- `Map` – Key-value storage for inventory
-
-### Enumerations
-- `BloodGroup` – A+, A-, B+, B-, AB+, AB-, O+, O-
-- `RoomType` – General, Private, ICU, Emergency, Operation
-- `AppointmentStatus` – Scheduled, Completed, Cancelled, No Show
-- `PrescriptionStatus` – Active, Completed, Discontinued
-- `PaymentMethod` – Cash, Card, Insurance, UPI
-
-### Streams API
+### 13. **Lambda Expressions & Streams**
 ```java
 doctors.values().stream()
     .filter(d -> d.getSpecialization().equals("Cardiology"))
     .collect(Collectors.toList());
 ```
-- `filter()` – Filter data based on conditions
-- `map()` – Transform data
-- `collect()` – Gather results into collections
+- Functional programming
+- Data filtering and transformation
+- Modern Java features (Java 8+)
 
-### Lambda Expressions
-```java
-rooms.values().stream()
-    .filter(r -> !r.isOccupied() && !r.isMaintenanceRequired())
-    .findFirst()
-    .orElse(null);
+## 🏗️ System Architecture
+
+```
+┌─────────────────────────────────────────┐
+│   Hospital Management System (HMS)       │
+├─────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐      │
+│  │  Hospital   │  │  Insurance  │      │
+│  │             │  │  Provider   │      │
+│  └─────────────┘  └─────────────┘      │
+└─────────────────────────────────────────┘
+         │                    │
+    ┌────┴────┐         ┌────┴────┐
+    ▼         ▼         ▼         ▼
+┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
+│ Staff  │ │Patient │ │ Rooms  │ │Policy  │
+│Management│ │ Care  │ │ & Beds │ │Claims  │
+└────────┘ └────────┘ └────────┘ └────────┘
+    │         │         │         │
+    ▼         ▼         ▼         ▼
+┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
+│Doctors │ │Medical │ │Admission│ │Billing │
+│Nurses  │ │Records │ │Discharge│ │Payment │
+│Admins  │ │Prescr. │ │         │ │        │
+└────────┘ └────────┘ └────────┘ └────────┘
 ```
 
+## 📊 Class Hierarchy
+
+### Core Classes (25+)
+
+#### **Person Hierarchy**
+- `Person` (Abstract) - Base class for all people
+  - `MedicalStaff` (Abstract) - Base for hospital staff
+    - `Doctor` - Medical doctors with specializations
+    - `Nurse` - Nursing staff with certifications
+    - `Administrator` - Hospital administrators
+  - `Patient` - Hospital patients
+
+#### **Medical Services**
+- `Appointment` - Patient-doctor appointments
+- `MedicalRecord` - Patient medical history
+- `Prescription` - Medication prescriptions
+- `LabTest` - Laboratory test results
+- `Admission` - Patient hospital admissions
+
+#### **Facilities**
+- `Room` - Hospital rooms and beds
+- `Laboratory` - Lab facilities and tests
+- `Pharmacy` - Medication inventory
+- `EmergencyDepartment` - Emergency services
+
+#### **Financial**
+- `Bill` - Patient billing
+- `InsurancePolicy` - Insurance coverage
+- `InsuranceProvider` - Insurance companies
+
+#### **Data Classes**
+- `Address` - Physical addresses
+- `ContactInfo` - Contact information
+- `Inventory` - Stock management
+
+#### **Management**
+- `Hospital` - Main hospital entity
+- `HospitalManagementSystem` - System controller
+
+### Interfaces
+- `Identifiable` - Objects with unique IDs
+- `Authenticatable` - Login functionality
+- `Billable` - Billing capabilities
+- `Schedulable` - Appointment scheduling
+- `Reportable` - Report generation
+
+### Enumerations
+- `BloodGroup` - Blood types
+- `AppointmentStatus` - Appointment states
+- `RoomType` - Types of hospital rooms
+- `PrescriptionStatus` - Prescription states
+- `PaymentMethod` - Payment options
+
 ### Custom Exceptions
-- `ValidationException` – Data validation errors
-- `AuthenticationException` – Login/password failures
-- `ResourceNotFoundException` – Missing resources
-- `InsufficientResourceException` – Unavailable resources
+- `ValidationException` - Data validation errors
+- `AuthenticationException` - Login failures
+- `ResourceNotFoundException` - Missing resources
+- `InsufficientResourceException` - Unavailable resources
 
-All exceptions use proper `try-catch` blocks for robust error handling.
-
----
-
-## ▶️ How to Run the Project
+## 🚀 Installation
 
 ### Prerequisites
-- Java JDK 8 or higher
-- Command Line / Terminal
+- Java Development Kit (JDK) 17 or higher
+- Any Java IDE (IntelliJ IDEA, Eclipse, VS Code) or command line
 
-### Compile
+### Steps
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/hospital-management-system.git
+cd hospital-management-system
+```
+
+2. **Compile the code**
 ```bash
 javac HospitalManagementDemo.java
 ```
 
-### Run
+3. **Run the application**
 ```bash
 java HospitalManagementDemo
 ```
 
-### Expected Output
-The program runs a comprehensive demonstration showing:
-- Hospital setup and configuration
-- Staff registration (Doctors, Nurses, Administrators)
-- Patient registration and management
-- Appointment scheduling
-- Medical records and prescriptions
-- Lab test ordering and completion
-- Patient admission and discharge
-- Billing and insurance claims
-- Emergency department operations
-- System-wide reports and statistics
+## 💻 Usage
 
----
-
-## 📋 Code Examples
-
-### 1. Encapsulation Example
-```java
-public class Doctor extends MedicalStaff {
-    private String passwordHash;  // Private field
-    private double consultationFee;
-    
-    public boolean authenticate(String password) {
-        return passwordHash.equals(hashPassword(password));
-    }
-    
-    public double getConsultationFee() {
-        return consultationFee;  // Controlled access
-    }
-}
-```
-
-### 2. Inheritance Example
-```java
-// Person is the base class
-public abstract class Person implements Identifiable {
-    protected String firstName, lastName;
-    public abstract String getType();
-}
-
-// MedicalStaff extends Person
-public abstract class MedicalStaff extends Person 
-                                implements Authenticatable {
-    protected String employeeId;
-}
-
-// Doctor extends MedicalStaff
-public class Doctor extends MedicalStaff implements Schedulable {
-    private String specialization;
-    
-    @Override
-    public String getType() {
-        return "Doctor";
-    }
-}
-```
-
-### 3. Polymorphism Example
-```java
-// Runtime polymorphism
-Person person1 = new Doctor(...);
-Person person2 = new Patient(...);
-Person person3 = new Nurse(...);
-
-// Different implementations called at runtime
-System.out.println(person1.getType());  // "Doctor"
-System.out.println(person2.getType());  // "Patient"
-System.out.println(person3.getType());  // "Nurse"
-```
-
-### 4. Interface Implementation
-```java
-// Multiple interfaces
-public class Patient extends Person implements Billable {
-    @Override
-    public double calculateCharges() {
-        return bills.stream()
-            .filter(bill -> !bill.isPaid())
-            .mapToDouble(Bill::getTotalAmount)
-            .sum();
-    }
-    
-    @Override
-    public Map<String, Object> generateInvoice() {
-        // Generate detailed invoice
-    }
-}
-```
-
-### 5. Exception Handling
-```java
-try {
-    Admission admission = hospital.admitPatient(
-        patient, doctor, RoomType.ICU, "Emergency"
-    );
-} catch (InsufficientResourceException e) {
-    System.err.println("No ICU beds available: " + e.getMessage());
-} catch (ValidationException e) {
-    System.err.println("Invalid data: " + e.getMessage());
-}
-```
-
-### 6. Streams & Lambda
-```java
-// Find available doctors
-List<Doctor> cardiologists = hospital.getDoctors().values().stream()
-    .filter(d -> d.getSpecialization().equalsIgnoreCase("Cardiology"))
-    .filter(d -> d.isAvailable(dateTime))
-    .collect(Collectors.toList());
-
-// Get low stock items
-List<Inventory> lowStock = pharmacy.getInventory().values().stream()
-    .filter(Inventory::needsReorder)
-    .sorted(Comparator.comparing(Inventory::getQuantity))
-    .collect(Collectors.toList());
-```
-
----
-
-## 🎯 Key Design Patterns
-
-### 1. Singleton Pattern
-```java
-private static synchronized String generatePatientId() {
-    return "PAT" + (++patientCounter);
-}
-```
-Ensures unique ID generation across all instances.
-
-### 2. Factory Pattern
-```java
-public void registerDoctor(Doctor doctor) {
-    doctors.put(doctor.getEmployeeId(), doctor);
-}
-
-public void registerNurse(Nurse nurse) {
-    nurses.put(nurse.getEmployeeId(), nurse);
-}
-```
-Centralized object creation and management.
-
-### 3. Strategy Pattern
-```java
-public boolean processPayment(PaymentMethod method) {
-    // Different strategies for Cash, Card, Insurance, UPI
-}
-```
-
-### 4. Builder Pattern
-```java
-Bill bill = new Bill(patient);
-bill.addConsultationFee(doctor);
-bill.addRoomCharges(admission);
-bill.addTestCharges("Blood Test", 500.0);
-bill.applyDiscount(10);
-```
-Step-by-step complex object construction.
-
----
-
-## 📊 Sample Workflow
-
-### Complete Patient Journey
+### Basic Example
 
 ```java
-// 1. Register patient
-Patient patient = new Patient("John", "Doe", birthDate, "Male",
+// Create a hospital
+Hospital hospital = new Hospital("City General Hospital", address, contact);
+
+// Register a doctor
+Doctor doctor = new Doctor("John", "Doe", birthDate, "Male", 
+                          address, contact, "DOC001", "Cardiology", 
+                          150000.0, joinDate, "Cardiologist", 
+                          "MCI12345", 1500.0);
+hospital.registerDoctor(doctor);
+
+// Register a patient
+Patient patient = new Patient("Jane", "Smith", birthDate, "Female",
                              address, contact, BloodGroup.O_POSITIVE, 
                              "INS123");
 hospital.registerPatient(patient);
 
-// 2. Schedule appointment
+// Schedule an appointment
 Appointment apt = hospital.scheduleAppointment(patient, doctor, 
                                               dateTime, "Checkup");
 
-// 3. Doctor diagnoses and prescribes
-MedicalRecord record = doctor.diagnose(patient, "Hypertension", 
-                                      "Elevated BP detected");
-Prescription presc = doctor.prescribeMedication(patient, medications);
+// Create prescription
+List<Map<String, Object>> meds = new ArrayList<>();
+// Add medications...
+Prescription prescription = doctor.prescribeMedication(patient, meds);
 
-// 4. Order lab tests
-LabTest test = lab.orderTest(patient, "Blood Test", doctor);
-lab.completeTest(test, "Normal ranges", "Technician");
-
-// 5. Admit patient if needed
+// Admit patient
 Admission admission = hospital.admitPatient(patient, doctor, 
-                                           RoomType.PRIVATE, "Observation");
+                                           RoomType.PRIVATE, "Surgery");
 
-// 6. Nurse records vital signs
-nurse.recordVitalSigns(patient, vitalSigns);
-nurse.administerMedication(patient, "Aspirin", "75mg", LocalDateTime.now());
-
-// 7. Generate bill
+// Generate bill
 Bill bill = new Bill(patient);
 bill.addConsultationFee(doctor);
 bill.addRoomCharges(admission);
-bill.addTestCharges("Blood Test", 500.0);
+bill.processPayment(PaymentMethod.CARD);
+```
 
-// 8. Process insurance claim
+### Advanced Features
+
+#### Emergency Department Triage
+```java
+EmergencyDepartment ed = new EmergencyDepartment(20);
+hospital.setupEmergencyDepartment(20);
+ed.triagePatient(patient, 2, "Chest pain"); // Severity 1-5
+```
+
+#### Insurance Claim Processing
+```java
+InsuranceProvider provider = new InsuranceProvider("HealthCare Plus", 
+                                                   policyTypes);
 InsurancePolicy policy = provider.createPolicy(patient, "Premium", 
                                               500000.0, 15000.0);
-Map.Entry<Boolean, Double> claim = provider.processClaim(
-                                      policy.getPolicyNumber(), bill);
-
-// 9. Patient pays remaining amount
-bill.processPayment(PaymentMethod.CARD);
-
-// 10. Discharge patient
-hospital.dischargePatient(admission, "Recovered, continue medication");
+Map.Entry<Boolean, Double> claim = provider.processClaim(policyNumber, bill);
 ```
 
----
-
-## 📈 Statistics & Reporting
-
-### Hospital Report
-```
-Total Doctors: 5
-Total Nurses: 10
-Total Patients: 150
-Total Rooms: 50
-Occupancy Rate: 78.5%
-Active Appointments: 25
-Laboratories: 2
-Pharmacies: 1
+#### Laboratory Tests
+```java
+Laboratory lab = new Laboratory("Central Lab", "Ground Floor");
+lab.addTestType("Blood Test", 500.0, 2);
+LabTest test = lab.orderTest(patient, "Blood Test", doctor);
+lab.completeTest(test, "Results here", "Tech Name");
 ```
 
-### Financial Report
-```
-Period: 2024-01-01 to 2024-01-31
-Total Revenue: ₹5,45,000
-Total Paid: ₹4,20,000
-Total Pending: ₹1,25,000
-Collection Rate: 77.06%
-```
-
-### Doctor Statistics
-```
-Total Patients: 45
-Total Consultations: 120
-Total Appointments: 150
-Specialization: Cardiology
+#### Pharmacy Management
+```java
+Pharmacy pharmacy = new Pharmacy("Main Pharmacy", "First Floor");
+pharmacy.addMedication("Aspirin", 100, 50.0, 20);
+Map<String, Object> sale = pharmacy.dispenseMedication(prescription, 
+                                                       "Pharmacist");
+List<Inventory> lowStock = pharmacy.getLowStockItems();
 ```
 
----
+## 📁 Code Structure
+
+```
+hospital-management-system/
+├── HospitalManagementDemo.java    # Main file with all classes
+├── README.md                       # This file
+├── .gitignore                      # Git ignore file
+└── docs/                          # Documentation (optional)
+    ├── class-diagrams/
+    ├── sequence-diagrams/
+    └── use-cases/
+```
+
+## 🔑 Key Components
+
+### 1. Patient Management
+- Complete patient registration with personal and medical information
+- Medical history tracking with diagnoses and treatments
+- Vital signs monitoring and medication logs
+- Allergy and chronic condition management
+
+### 2. Staff Management
+- Role-based access control (Doctor, Nurse, Administrator)
+- Authentication system with password hashing
+- Shift scheduling and management
+- Performance review system
+
+### 3. Appointment System
+- Real-time slot availability checking
+- Appointment scheduling, rescheduling, and cancellation
+- Status tracking (Scheduled, Completed, Cancelled, No Show)
+- Consultation notes and follow-up management
+
+### 4. Billing System
+- Itemized billing with multiple charge types
+- Tax calculation and discount application
+- Multiple payment methods support
+- Insurance claim integration
+
+### 5. Room Management
+- Different room types (General, Private, ICU, Emergency, Operation)
+- Occupancy tracking and maintenance scheduling
+- Daily charge calculation
+- Amenities management
+
+### 6. Pharmacy
+- Medication inventory with stock levels
+- Prescription dispensing with validation
+- Low stock alerts and reorder notifications
+- Sales reporting and revenue tracking
+
+### 7. Laboratory
+- Test catalog management
+- Test ordering and result tracking
+- Technician assignment
+- Report generation
+
+### 8. Emergency Department
+- Priority-based patient triage (1-5 severity levels)
+- Queue management for waiting patients
+- Bed availability tracking
+- Critical case identification
+
+## 🎨 Design Patterns
+
+### 1. **Singleton Pattern**
+```java
+// ID generation ensures unique identifiers
+private static synchronized String generatePatientId()
+```
+
+### 2. **Factory Pattern**
+```java
+// Creating different types of staff
+public void registerDoctor(Doctor doctor)
+public void registerNurse(Nurse nurse)
+```
+
+### 3. **Strategy Pattern**
+```java
+// Different payment methods
+public boolean processPayment(PaymentMethod method)
+```
+
+### 4. **Observer Pattern**
+```java
+// Low stock alerts
+public List<Inventory> getLowStockItems()
+```
+
+### 5. **Builder Pattern**
+```java
+// Complex object construction
+Bill bill = new Bill(patient);
+bill.addConsultationFee(doctor);
+bill.addRoomCharges(admission);
+bill.applyDiscount(10);
+```
+
+## 📈 Features Breakdown
+
+| Feature | Classes Involved | Key Capabilities |
+|---------|-----------------|------------------|
+| Patient Care | Patient, Doctor, MedicalRecord, Prescription | Medical history, diagnoses, prescriptions |
+| Appointments | Appointment, Doctor, Patient | Scheduling, status tracking, notes |
+| Admissions | Admission, Room, Patient, Doctor | Room allocation, discharge, duration tracking |
+| Billing | Bill, Patient, InsurancePolicy | Itemized charges, payments, insurance claims |
+| Pharmacy | Pharmacy, Inventory, Prescription | Stock management, dispensing, alerts |
+| Laboratory | Laboratory, LabTest, Doctor, Patient | Test ordering, results, reporting |
+| Emergency | EmergencyDepartment, Patient | Triage, queue management, priority handling |
+| Staff | Doctor, Nurse, Administrator | Authentication, scheduling, reviews |
+| Reporting | Hospital, Laboratory, Pharmacy | Financial, operational, statistical reports |
+
+## 🧪 Testing
+
+### Manual Testing Workflow
+
+1. **Create Hospital Instance**
+   - Initialize with address and contact
+   - Setup departments (Emergency, Lab, Pharmacy)
+
+2. **Register Staff**
+   - Add doctors with specializations
+   - Add nurses with certifications
+   - Add administrators
+
+3. **Register Patients**
+   - Complete patient profile
+   - Add medical history
+   - Set allergies and conditions
+
+4. **Test Core Workflows**
+   - Schedule appointments
+   - Admit patients
+   - Order lab tests
+   - Dispense medications
+   - Generate bills
+   - Process insurance claims
+
+5. **Verify Reports**
+   - Hospital statistics
+   - Financial reports
+   - Staff performance
+   - Patient summaries
 
 ## 🔒 Security Features
 
 - **Password Hashing**: SHA-256 encryption for all passwords
-- **Access Control**: Role-based permissions (Doctor, Nurse, Administrator)
-- **Data Validation**: Input validation for phone, email, postal codes
+- **Access Control**: Role-based permissions
+- **Data Validation**: Input validation for all user data
 - **Exception Handling**: Graceful error management
-- **Audit Trail**: Timestamps on all records and transactions
+- **Audit Trail**: Timestamps on all records
 
----
+## 📊 Sample Output
 
-## 🌟 Why This Project Stands Out
+```
+================================================================================
+HOSPITAL MANAGEMENT SYSTEM - DEMONSTRATION
+================================================================================
 
-### 1. Real-World Complexity
-Not a simple student project – models actual hospital operations with realistic business logic.
+✓ Appointment scheduled: {appointmentId=APT30001, patient=Amit Patel, ...}
+✓ Prescription created: PRX20001
+✓ Medical record created: Record REC10001: Mild Hypertension by Dr. Rajesh Kumar
+✓ Lab test completed: {testId=TEST80001, patientName=Amit Patel, ...}
+✓ Patient admitted: {admissionId=ADM40001, patient=Amit Patel, ...}
+✓ Vital signs recorded: {bloodPressure=140/90, heartRate=78, ...}
+✓ Bill generated:
+  Subtotal: ₹4080.00
+  Total: ₹4334.00
+✓ Insurance claim approved: ₹3467.20
+  Patient pays: ₹866.80
+✓ Medication dispensed: ₹80.00
 
-### 2. Complete OOP Coverage
-Every major OOP concept is demonstrated with practical, meaningful examples.
-
-### 3. Modern Java Features
-Uses Java 8+ features including Streams, Lambdas, and functional programming paradigms.
-
-### 4. Scalable Architecture
-Well-structured code that can be extended with databases, APIs, or web interfaces.
-
-### 5. Production-Ready Practices
-- Proper exception handling
-- Input validation
-- Secure password storage
-- Comprehensive documentation
-- Clean code principles
-
----
-
-## 🎓 Learning Outcomes
-
-After studying this project, you will understand:
-
-✅ How to design complex class hierarchies  
-✅ When to use abstract classes vs interfaces  
-✅ How to implement composition, aggregation, and association  
-✅ Proper exception handling strategies  
-✅ Working with Java Collections effectively  
-✅ Using Streams API for data processing  
-✅ Implementing design patterns in real applications  
-✅ Building modular, maintainable code  
-✅ Object-oriented analysis and design  
-
----
-
-## 📚 Potential Extensions
-
-### Database Integration
-- Connect to MySQL/PostgreSQL
-- Implement data persistence
-- Add database transaction management
-
-### Web Interface
-- Build REST API with Spring Boot
-- Create React/Angular frontend
-- Implement JWT authentication
-
-### Additional Features
-- SMS/Email notifications
-- Report generation (PDF)
-- Analytics dashboard
-- Appointment reminders
-- Telemedicine support
-- Mobile app development
-
----
+================================================================================
+HOSPITAL REPORT
+================================================================================
+HOSPITALID: HOSP1
+HOSPITALNAME: City General Hospital
+TOTALDOCTORS: 1
+TOTALNURSES: 1
+TOTALPATIENTS: 2
+OCCUPANCYRATE: 16.67%
+...
+```
 
 ## 🤝 Contributing
 
-Contributions are welcome! To contribute:
+Contributions are welcome! Here's how you can help:
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/AmazingFeature`
-3. Commit changes: `git commit -m 'Add AmazingFeature'`
-4. Push to branch: `git push origin feature/AmazingFeature`
-5. Open a Pull Request
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open a Pull Request**
 
-### Guidelines
+### Contribution Guidelines
 - Follow Java naming conventions
-- Maintain OOP principles
 - Add comments for complex logic
-- Update documentation
-- Test thoroughly
+- Include unit tests for new features
+- Update documentation as needed
+- Maintain OOP principles
 
----
+## 📝 Future Enhancements
+
+- [ ] Database integration (MySQL/PostgreSQL)
+- [ ] RESTful API implementation
+- [ ] Web-based UI (Spring Boot + React)
+- [ ] Mobile application
+- [ ] Real-time notifications
+- [ ] Analytics dashboard
+- [ ] Multi-language support
+- [ ] Telemedicine integration
+- [ ] Electronic Health Records (EHR) compliance
+- [ ] Automated report generation
 
 ## 📄 License
 
-This project is licensed under the MIT License – free to use for learning, portfolios, and academic purposes.
-
----
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 
 **Your Name**
 - GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
 - Email: your.email@example.com
-
----
 
 ## 🙏 Acknowledgments
 
 - Inspired by real-world hospital management systems
-- Implements industry-standard OOP practices
-- Follows Java best practices and design patterns
-- Built as a comprehensive learning resource
-
----
+- Built as a comprehensive OOP demonstration project
+- Implements industry-standard design patterns
+- Follows Java best practices and conventions
 
 ## 📞 Support
 
-- 🐛 **Report Issues**: [GitHub Issues](https://github.com/yourusername/hospital-management-system/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/hospital-management-system/discussions)
-- 📧 **Email**: your.email@example.com
+For support, email your.email@example.com or open an issue on GitHub.
 
 ---
 
-⭐ **If you find this project helpful, please star the repository!**
+⭐ **Star this repository** if you found it helpful!
 
-🔗 **Share it with others learning OOP and Java!**
+💡 **Fork it** to build your own version!
 
-📖 **Use it as a reference for your own projects!**
-
----
-
-**Built with ❤️ for the Java & OOP learning community**
+🐛 **Report bugs** to help improve the project!
